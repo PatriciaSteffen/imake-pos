@@ -6,6 +6,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:imake/components/custom_app_bar.dart';
 import 'package:imake/tasks/presentation/bloc/tasks_bloc.dart';
 import 'package:imake/components/build_text_field.dart';
+import 'package:imake/tasks/presentation/bloc/tasks_event.dart';
+import 'package:imake/tasks/presentation/bloc/tasks_state.dart';
 import 'package:imake/tasks/presentation/widget/task_item_view.dart';
 import 'package:imake/utils/color_palette.dart';
 import 'package:imake/utils/util.dart';
@@ -224,12 +226,12 @@ class _TasksScreenState extends State<TasksScreen> {
                     }
                     return Container();
                   }))),
-          floatingActionButton: FloatingActionButton(
-              child: const Icon(
+          floatingActionButton: const FloatingActionButton(
+              onPressed: null,
+              child: Icon(
                 Icons.add_circle,
                 color: kPrimaryColor,
-              ),
-              onPressed: null),
+              )),
         )));
   }
 }
