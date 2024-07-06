@@ -1,6 +1,7 @@
 class TaskModel {
   String id;
   String title;
+  String detail;
   String description;
   DateTime? startDateTime;
   DateTime? stopDateTime;
@@ -9,6 +10,7 @@ class TaskModel {
   TaskModel({
     required this.id,
     required this.title,
+    required this.detail,
     required this.description,
     required this.startDateTime,
     required this.stopDateTime,
@@ -19,6 +21,7 @@ class TaskModel {
     return {
       'id': id,
       'title': title,
+      'detail': detail,
       'description': description,
       'completed': completed,
       'startDateTime': startDateTime?.toIso8601String(),
@@ -30,6 +33,7 @@ class TaskModel {
     return TaskModel(
       id: json['id'],
       title: json['title'],
+      detail: json['detail'],
       description: json['description'],
       completed: json['completed'],
       startDateTime: DateTime.parse(json['startDateTime']),
@@ -39,7 +43,7 @@ class TaskModel {
 
   @override
   String toString() {
-    return 'TaskModel{id: $id, title: $title, description: $description, '
+    return 'TaskModel{id: $id, detail: $detail, title: $title, description: $description, '
         'startDateTime: $startDateTime, stopDateTime: $stopDateTime, '
         'completed: $completed}';
   }

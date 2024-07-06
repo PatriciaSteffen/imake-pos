@@ -34,6 +34,7 @@ class _TaskItemViewState extends State<TaskItemView> {
                   var taskModel = TaskModel(
                       id: widget.taskModel.id,
                       title: widget.taskModel.title,
+                      detail: widget.taskModel.detail,
                       description: widget.taskModel.description,
                       completed: !widget.taskModel.completed,
                       startDateTime: widget.taskModel.startDateTime,

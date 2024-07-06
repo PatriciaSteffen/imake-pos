@@ -1,9 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:imake/tasks/presentation/bloc/tasks_event.dart';
 import 'package:imake/tasks/presentation/bloc/tasks_state.dart';
 
-import '../../data/local/model/task_model.dart';
 import '../../data/repository/task_repository.dart';
 
 class TasksBloc extends Bloc<TasksEvent, TasksState> {
@@ -23,6 +21,9 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     try {
       if (event!.taskModel.title.trim().isEmpty) {
         return emit(AddTaskFailure(error: 'Título não pode ser vazio'));
+      }
+      if (event.taskModel.detail.trim().isEmpty) {
+        return emit(AddTaskFailure(error: 'Detalhe não pode ser vazia'));
       }
       if (event.taskModel.description.trim().isEmpty) {
         return emit(AddTaskFailure(error: 'Descrição não pode ser vazia'));
@@ -56,6 +57,9 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     try {
       if (event.taskModel.title.trim().isEmpty) {
         return emit(UpdateTaskFailure(error: 'Título não pode ser vazio'));
+      }
+      if (event.taskModel.detail.trim().isEmpty) {
+        return emit(AddTaskFailure(error: 'Detalhe não pode ser vazia'));
       }
       if (event.taskModel.description.trim().isEmpty) {
         return emit(UpdateTaskFailure(error: 'Descrição não pode ser vazia'));

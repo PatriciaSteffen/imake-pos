@@ -25,6 +25,7 @@ class UpdateTaskScreen extends StatefulWidget {
 
 class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
   TextEditingController title = TextEditingController();
+  TextEditingController detail = TextEditingController();
   TextEditingController description = TextEditingController();
 
   CalendarFormat _calendarFormat = CalendarFormat.month;
@@ -45,6 +46,7 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
   @override
   void dispose() {
     title.dispose();
+    detail.dispose();
     description.dispose();
     super.dispose();
   }
@@ -52,6 +54,7 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
   @override
   void initState() {
     title.text = widget.taskModel.title;
+    detail.text = widget.taskModel.detail;
     description.text = widget.taskModel.description;
     _selectedDay = _focusedDay;
     _rangeStart = widget.taskModel.startDateTime;
@@ -135,7 +138,7 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
                           ),
                           const SizedBox(height: 20),
                           buildText(
-                              'Title',
+                              'Título',
                               kBlackColor,
                               textMedium,
                               FontWeight.bold,
@@ -145,7 +148,7 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
                             height: 10,
                           ),
                           BuildTextField(
-                              hint: "Task Title",
+                              hint: "Título",
                               controller: title,
                               inputType: TextInputType.text,
                               fillColor: kWhiteColor,
@@ -154,7 +157,7 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
                             height: 20,
                           ),
                           buildText(
-                              'Description',
+                              'Detalhe',
                               kBlackColor,
                               textMedium,
                               FontWeight.bold,
@@ -164,52 +167,72 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
                             height: 10,
                           ),
                           BuildTextField(
-                              hint: "Task Description",
+                              hint: "Detalhe",
+                              controller: detail,
+                              inputType: TextInputType.text,
+                              fillColor: kWhiteColor,
+                              onChange: (value) {}),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          buildText(
+                              'Descrição',
+                              kBlackColor,
+                              textMedium,
+                              FontWeight.bold,
+                              TextAlign.start,
+                              TextOverflow.clip),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          BuildTextField(
+                              hint: "Descrição",
                               controller: description,
                               inputType: TextInputType.multiline,
                               fillColor: kWhiteColor,
                               onChange: (value) {}),
                           const SizedBox(height: 20),
-                          SizedBox(
-                            width: size.width,
-                            child: ElevatedButton(
-                                style: ButtonStyle(
-                                  foregroundColor:
-                                      WidgetStateProperty.all<Color>(
-                                          Colors.white),
-                                  backgroundColor:
-                                      WidgetStateProperty.all<Color>(
-                                          kPrimaryColor),
-                                  shape: WidgetStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          10), // Adjust the radius as needed
+                         
+                              SizedBox(
+                                width: size.width,
+                                child: ElevatedButton(
+                                    style: ButtonStyle(
+                                      foregroundColor:
+                                          WidgetStateProperty.all<Color>(
+                                              Colors.white),
+                                      backgroundColor:
+                                          WidgetStateProperty.all<Color>(
+                                              kPrimaryColor),
+                                      shape: WidgetStateProperty.all<
+                                          RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ),
-                                onPressed: () {
-                                  var taskModel = TaskModel(
-                                      id: widget.taskModel.id,
-                                      title: title.text,
-                                      description: description.text,
-                                      completed: widget.taskModel.completed,
-                                      startDateTime: _rangeStart,
-                                      stopDateTime: _rangeEnd);
-                                  context.read<TasksBloc>().add(
-                                      UpdateTaskEvent(taskModel: taskModel));
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.all(15),
-                                  child: buildText(
-                                      'Update',
-                                      kWhiteColor,
-                                      textMedium,
-                                      FontWeight.w600,
-                                      TextAlign.center,
-                                      TextOverflow.clip),
-                                )),
-                          ),
+                                    onPressed: () {
+                                      var taskModel = TaskModel(
+                                          id: widget.taskModel.id,
+                                          title: title.text,
+                                          detail: detail.text,
+                                          description: description.text,
+                                          completed: widget.taskModel.completed,
+                                          startDateTime: _rangeStart,
+                                          stopDateTime: _rangeEnd);
+                                      context.read<TasksBloc>().add(
+                                          UpdateTaskEvent(taskModel: taskModel));
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(15),
+                                      child: buildText(
+                                          'Salvar Alterações',
+                                          kWhiteColor,
+                                          textMedium,
+                                          FontWeight.w600,
+                                          TextAlign.center,
+                                          TextOverflow.clip),
+                                    )),
+                              ),
                         ],
                       );
                     })))));

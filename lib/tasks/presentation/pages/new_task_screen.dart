@@ -23,6 +23,7 @@ class NewTaskScreen extends StatefulWidget {
 
 class _NewTaskScreenState extends State<NewTaskScreen> {
   TextEditingController title = TextEditingController();
+  TextEditingController detail = TextEditingController();
   TextEditingController description = TextEditingController();
 
   CalendarFormat _calendarFormat = CalendarFormat.month;
@@ -141,6 +142,25 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                             height: 20,
                           ),
                           buildText(
+                              'Detalhe',
+                              kBlackColor,
+                              textMedium,
+                              FontWeight.bold,
+                              TextAlign.start,
+                              TextOverflow.clip),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          BuildTextField(
+                              hint: "Detalhe",
+                              controller: detail,
+                              inputType: TextInputType.multiline,
+                              fillColor: kWhiteColor,
+                              onChange: (value) {}),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          buildText(
                               'Descrição',
                               kBlackColor,
                               textMedium,
@@ -217,6 +237,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                                       var taskModel = TaskModel(
                                           id: taskId,
                                           title: title.text,
+                                          detail: detail.text,
                                           description: description.text,
                                           startDateTime: _rangeStart,
                                           stopDateTime: _rangeEnd);

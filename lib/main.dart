@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:imake/tasks/data/local/data_sources/login_data_provider.dart';
+import 'package:imake/tasks/data/repository/login_repository.dart';
+import 'package:imake/tasks/presentation/bloc/login_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:imake/routes/app_router.dart';
 import 'package:imake/bloc_state_observer.dart';
@@ -26,11 +29,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider(
-        create: (context) =>
-            TaskRepository(taskDataProvider: TaskDataProvider(preferences)),
-        child: BlocProvider(
-            create: (context) => TasksBloc(context.read<TaskRepository>()),
+    return MultiRepositoryProvider(
+        providers: [
+          RepositoryProvider<TaskRepository>(
+              create: (context) => TaskRepository(
+                  taskDataProvider: TaskDataProvider(preferences))),
+          RepositoryProvider<LoginRepository>(
+              create: (context) => LoginRepository(
+                  loginDataProvider: LoginDataProvider(preferences))),
+        ],
+        child: MultiBlocProvider(
+            providers: [
+              BlocProvider<TasksBloc>(
+                create: (BuildContext context) =>
+                    TasksBloc(context.read<TaskRepository>()),
+              ),
+              BlocProvider<LoginBloc>(
+                create: (BuildContext context) =>
+                    LoginBloc(context.read<LoginRepository>()),
+              ),
+            ],
             child: MaterialApp(
               title: 'IMake - Gerenciador de Tarefas',
               debugShowCheckedModeBanner: false,

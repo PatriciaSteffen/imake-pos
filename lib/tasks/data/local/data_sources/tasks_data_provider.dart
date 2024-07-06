@@ -113,9 +113,10 @@ class TaskDataProvider {
     List<TaskModel> matchedTasked = tasks;
     return matchedTasked.where((task) {
       final titleMatches = task.title.toLowerCase().contains(searchText);
+      final detailMatches = task.detail.toLowerCase().contains(searchText);
       final descriptionMatches =
           task.description.toLowerCase().contains(searchText);
-      return titleMatches || descriptionMatches;
+      return titleMatches || detailMatches || descriptionMatches;
     }).toList();
   }
 }
