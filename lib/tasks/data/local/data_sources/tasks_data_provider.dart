@@ -18,15 +18,9 @@ class TaskDataProvider {
         tasks = savedTasks
             .map((taskJson) => TaskModel.fromJson(json.decode(taskJson)))
             .toList();
-        tasks.sort((a, b) {
-          if (a.completed == b.completed) {
-            return 0;
-          } else if (a.completed) {
-            return 1;
-          } else {
-            return -1;
-          }
-        });
+
+        //sort by datetime  tasks
+        tasks.sort((a, b) => a.startDateTime!.compareTo(b.startDateTime!));
       }
       return tasks;
     } catch (e) {
@@ -37,6 +31,10 @@ class TaskDataProvider {
   Future<List<TaskModel>> sortTasks(int sortOption) async {
     switch (sortOption) {
       case 0:
+        //sort by datetime  tasks
+        tasks.sort((a, b) => a.startDateTime!.compareTo(b.startDateTime!));
+        return tasks;
+      case 1:
         //sort by completed tasks
         tasks.sort((a, b) {
           if (!a.completed && b.completed) {
@@ -47,8 +45,8 @@ class TaskDataProvider {
           return 0;
         });
         break;
-      case 1:
-        //sort by pending tasks
+
+      case 2: //sort by pending tasks
         tasks.sort((a, b) {
           if (a.completed == b.completed) {
             return 0;
@@ -78,15 +76,10 @@ class TaskDataProvider {
     try {
       tasks[tasks.indexWhere((element) => element.id == taskModel.id)] =
           taskModel;
-      tasks.sort((a, b) {
-        if (a.completed == b.completed) {
-          return 0;
-        } else if (a.completed) {
-          return 1;
-        } else {
-          return -1;
-        }
-      });
+
+      //sort by datetime  tasks
+      tasks.sort((a, b) => a.startDateTime!.compareTo(b.startDateTime!));
+
       final List<String> taskJsonList =
           tasks.map((task) => json.encode(task.toJson())).toList();
       prefs!.setStringList(Constants.taskKey, taskJsonList);

@@ -54,8 +54,9 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
           statusBarColor: Colors.transparent,
         ),
         child: Scaffold(
-            backgroundColor: kPrimaryColor,
+            backgroundColor: kWhiteColor,
             appBar: const CustomAppBar(
+              backgroundColor: kPrimaryColor,
               title: 'Criar Tarefa',
             ),
             body: GestureDetector(

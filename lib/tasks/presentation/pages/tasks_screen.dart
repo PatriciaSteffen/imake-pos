@@ -51,12 +51,11 @@ class _TasksScreenState extends State<TasksScreen> {
                 icon: const Icon(Icons.question_mark),
                 color: kWhiteColor,
                 onPressed: () {
-                  
-                Navigator.pushNamed(
-                  context,
-                  Pages.about,
-                  //   (route) => false,
-                );
+                  Navigator.pushNamed(
+                    context,
+                    Pages.about,
+                    //   (route) => false,
+                  );
                 },
               ),
               PopupMenuButton<int>(
@@ -70,10 +69,18 @@ class _TasksScreenState extends State<TasksScreen> {
                       {
                         context
                             .read<TasksBloc>()
-                            .add(SortTaskEvent(sortOption: 1));
+                            .add(SortTaskEvent(sortOption: 0));
                         break;
                       }
                     case 1:
+                      {
+                        context
+                            .read<TasksBloc>()
+                            .add(SortTaskEvent(sortOption: 1));
+                        break;
+                      }
+
+                    case 2:
                       {
                         context
                             .read<TasksBloc>()
@@ -84,6 +91,27 @@ class _TasksScreenState extends State<TasksScreen> {
                 },
                 itemBuilder: (BuildContext context) {
                   return [
+                      PopupMenuItem<int>(
+                      value: 0,
+                      child: Row(
+                        children: [
+                          SvgPicture.asset(
+                            'assets/svgs/calender.svg',
+                            width: 15,
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          buildText(
+                              'Data',
+                              kBlackColor,
+                              textSmall,
+                              FontWeight.normal,
+                              TextAlign.start,
+                              TextOverflow.clip)
+                        ],
+                      ),
+                    ),
                     PopupMenuItem<int>(
                       value: 1,
                       child: Row(
@@ -126,6 +154,7 @@ class _TasksScreenState extends State<TasksScreen> {
                         ],
                       ),
                     ),
+                  
                   ];
                 },
                 child: Padding(

@@ -70,8 +70,9 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
           statusBarColor: Colors.transparent,
         ),
         child: Scaffold(
-            backgroundColor: kPrimaryColor,
+            backgroundColor: kWhiteColor,
             appBar: const CustomAppBar(
+              backgroundColor: kPrimaryColor,
               title: 'Atualizar Tarefa',
             ),
             body: GestureDetector(
@@ -192,47 +193,46 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
                               fillColor: kWhiteColor,
                               onChange: (value) {}),
                           const SizedBox(height: 20),
-                         
-                              SizedBox(
-                                width: size.width,
-                                child: ElevatedButton(
-                                    style: ButtonStyle(
-                                      foregroundColor:
-                                          WidgetStateProperty.all<Color>(
-                                              Colors.white),
-                                      backgroundColor:
-                                          WidgetStateProperty.all<Color>(
-                                              kPrimaryColor),
-                                      shape: WidgetStateProperty.all<
-                                          RoundedRectangleBorder>(
-                                        RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10),
-                                        ),
-                                      ),
+                          SizedBox(
+                            width: size.width,
+                            child: ElevatedButton(
+                                style: ButtonStyle(
+                                  foregroundColor:
+                                      WidgetStateProperty.all<Color>(
+                                          Colors.white),
+                                  backgroundColor:
+                                      WidgetStateProperty.all<Color>(
+                                          kPrimaryColor),
+                                  shape: WidgetStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10),
                                     ),
-                                    onPressed: () {
-                                      var taskModel = TaskModel(
-                                          id: widget.taskModel.id,
-                                          title: title.text,
-                                          detail: detail.text,
-                                          description: description.text,
-                                          completed: widget.taskModel.completed,
-                                          startDateTime: _rangeStart,
-                                          stopDateTime: _rangeEnd);
-                                      context.read<TasksBloc>().add(
-                                          UpdateTaskEvent(taskModel: taskModel));
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(15),
-                                      child: buildText(
-                                          'Salvar Alterações',
-                                          kWhiteColor,
-                                          textMedium,
-                                          FontWeight.w600,
-                                          TextAlign.center,
-                                          TextOverflow.clip),
-                                    )),
-                              ),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  var taskModel = TaskModel(
+                                      id: widget.taskModel.id,
+                                      title: title.text,
+                                      detail: detail.text,
+                                      description: description.text,
+                                      completed: widget.taskModel.completed,
+                                      startDateTime: _rangeStart,
+                                      stopDateTime: _rangeEnd);
+                                  context.read<TasksBloc>().add(
+                                      UpdateTaskEvent(taskModel: taskModel));
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.all(15),
+                                  child: buildText(
+                                      'Salvar Alterações',
+                                      kWhiteColor,
+                                      textMedium,
+                                      FontWeight.w600,
+                                      TextAlign.center,
+                                      TextOverflow.clip),
+                                )),
+                          ),
                         ],
                       );
                     })))));
