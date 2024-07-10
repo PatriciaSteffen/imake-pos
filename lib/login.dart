@@ -52,76 +52,77 @@ class _LoginPageState extends State<LoginPage> {
                     );
                   }
                 }, builder: (context, state) {
-                  return Padding(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/images/app_logo.png',
-                          width: 100,
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        buildText(
-                            'IMake Tasks',
-                            kWhiteColor,
-                            textBold,
-                            FontWeight.w600,
-                            TextAlign.center,
-                            TextOverflow.clip),
-                        const SizedBox(height: 30),
-                        const Text(
-                          "Login",
-                          style: TextStyle(
-                            color: Colors.white,
+                  return Center(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/app_logo.png',
+                            width: 100,
                           ),
-                        ),
-                        const SizedBox(height: 30),
-                        BuildTextField(
-                            hint: "E-mail *",
-                            controller: email,
-                            inputType: TextInputType.text,
-                            fillColor: kWhiteColor,
-                            onChange: (value) {}),
-                        const SizedBox(height: 10),
-                        BuildTextField(
-                            hint: "Senha *",
-                            controller: password,
-                            inputType: TextInputType.text,
-                            fillColor: kWhiteColor,
-                            obscureText: true,
-                            onChange: (value) {}),
-                        const SizedBox(height: 30),
-                        SizedBox(
-                          width: double.infinity,
-                          child: CupertinoButton(
-                            padding: const EdgeInsets.all(17),
-                            color: Colors.greenAccent,
-                            child: const Text(
-                              "Entrar",
-                              style: TextStyle(
-                                  color: Colors.black45,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w600),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          buildText(
+                              'IMake Tasks',
+                              kWhiteColor,
+                              textBold,
+                              FontWeight.w600,
+                              TextAlign.center,
+                              TextOverflow.clip),
+                          const SizedBox(height: 30),
+                          const Text(
+                            "Login",
+                            style: TextStyle(
+                              color: Colors.white,
                             ),
-                            onPressed: () {
-                              final String loginId = DateTime.now()
-                                  .millisecondsSinceEpoch
-                                  .toString();
-                              var loginModel = LoginModel(
-                                id: loginId,
-                                email: email.text,
-                                password: password.text,
-                              );
-                              context
-                                  .read<LoginBloc>()
-                                  .add(CheckLogiEvent(loginModel: loginModel));
-                            },
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 30),
+                          BuildTextField(
+                              hint: "E-mail *",
+                              controller: email,
+                              inputType: TextInputType.text,
+                              fillColor: kWhiteColor,
+                              onChange: (value) {}),
+                          const SizedBox(height: 10),
+                          BuildTextField(
+                              hint: "Senha *",
+                              controller: password,
+                              inputType: TextInputType.text,
+                              fillColor: kWhiteColor,
+                              obscureText: true,
+                              onChange: (value) {}),
+                          const SizedBox(height: 30),
+                          SizedBox(
+                            width: double.infinity,
+                            child: CupertinoButton(
+                              padding: const EdgeInsets.all(17),
+                              color: Colors.greenAccent,
+                              child: const Text(
+                                "Entrar",
+                                style: TextStyle(
+                                    color: Colors.black45,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              onPressed: () {
+                                final String loginId = DateTime.now()
+                                    .millisecondsSinceEpoch
+                                    .toString();
+                                var loginModel = LoginModel(
+                                  id: loginId,
+                                  email: email.text,
+                                  password: password.text,
+                                );
+                                context
+                                    .read<LoginBloc>()
+                                    .add(CheckLogiEvent(loginModel: loginModel));
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 }),

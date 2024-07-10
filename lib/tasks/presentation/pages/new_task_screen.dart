@@ -54,7 +54,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
           statusBarColor: Colors.transparent,
         ),
         child: Scaffold(
-            backgroundColor: kWhiteColor,
+            backgroundColor: kPrimaryColor,
             appBar: const CustomAppBar(
               title: 'Criar Tarefa',
             ),
@@ -154,7 +154,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                           BuildTextField(
                               hint: "Detalhe",
                               controller: detail,
-                              inputType: TextInputType.multiline,
+                              inputType: TextInputType.text,
                               fillColor: kWhiteColor,
                               onChange: (value) {}),
                           const SizedBox(

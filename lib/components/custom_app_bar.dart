@@ -27,7 +27,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       leading: showBackArrow
           ? IconButton(
-              icon: SvgPicture.asset('assets/svgs/back_arrow.svg'),
+              icon: SvgPicture.asset(
+                'assets/svgs/back_arrow.svg',
+                color: Colors.white,
+              ),
               onPressed: () {
                 if (onBackTap != null) {
                   onBackTap!();
@@ -40,7 +43,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: actionWidgets,
       title: Row(
         children: [
-          buildText(title, kBlackColor, textMedium, FontWeight.w500,
+          buildText(title, kWhiteColor, textMedium, FontWeight.w500,
               TextAlign.start, TextOverflow.clip),
         ],
       ),

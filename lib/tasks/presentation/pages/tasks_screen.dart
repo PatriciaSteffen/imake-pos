@@ -43,9 +43,22 @@ class _TasksScreenState extends State<TasksScreen> {
             child: Scaffold(
           backgroundColor: kWhiteColor,
           appBar: CustomAppBar(
-            title: '?',
+            title: 'Imake',
             showBackArrow: false,
+            backgroundColor: kPrimaryColor,
             actionWidgets: [
+              IconButton(
+                icon: const Icon(Icons.question_mark),
+                color: kWhiteColor,
+                onPressed: () {
+                  
+                Navigator.pushNamed(
+                  context,
+                  Pages.about,
+                  //   (route) => false,
+                );
+                },
+              ),
               PopupMenuButton<int>(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
@@ -117,7 +130,10 @@ class _TasksScreenState extends State<TasksScreen> {
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(right: 20),
-                  child: SvgPicture.asset('assets/svgs/filter.svg'),
+                  child: SvgPicture.asset(
+                    'assets/svgs/filter.svg',
+                    color: kWhiteColor,
+                  ),
                 ),
               ),
             ],
@@ -231,7 +247,7 @@ class _TasksScreenState extends State<TasksScreen> {
                 Navigator.pushNamed(
                   context,
                   Pages.createNewTask,
-               //   (route) => false,
+                  //   (route) => false,
                 );
               },
               child: const Icon(

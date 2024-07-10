@@ -134,6 +134,11 @@ class _TaskItemViewState extends State<TaskItemView> {
                   const SizedBox(
                     height: 5,
                   ),
+                  buildText(widget.taskModel.detail, kGrey1, textSmall,
+                      FontWeight.normal, TextAlign.start, TextOverflow.clip),
+                  const SizedBox(
+                    height: 5,
+                  ),
                   buildText(widget.taskModel.description, kGrey1, textSmall,
                       FontWeight.normal, TextAlign.start, TextOverflow.clip),
                   const SizedBox(

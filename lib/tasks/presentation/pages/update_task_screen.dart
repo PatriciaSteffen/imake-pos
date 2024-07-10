@@ -70,9 +70,9 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
           statusBarColor: Colors.transparent,
         ),
         child: Scaffold(
-            backgroundColor: kWhiteColor,
+            backgroundColor: kPrimaryColor,
             appBar: const CustomAppBar(
-              title: 'Update Task',
+              title: 'Atualizar Tarefa',
             ),
             body: GestureDetector(
                 behavior: HitTestBehavior.opaque,
